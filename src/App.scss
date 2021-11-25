@@ -1,54 +1,50 @@
-.App {
-  text-align: center;
+.title {
+  color: #0d7fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  margin: 100px 0;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    cursor: pointer;
-    animation: App-logo-spin infinite linear;
-    &.App-logo--speed-0 {
-      animation: none;
-    }
-    &.App-logo--speed-1 {
-      animation-duration: 15s;
-    }
-    &.App-logo--speed-2 {
-      animation-duration: 7s;
-    }
-    &.App-logo--speed-3 {
-      animation-duration: 2s;
-    }
-    &.App-logo--speed-4 {
-      animation-duration: 1s;
-    }
-  }
-}
-
-.App-header {
-  background-color: #69c36e;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+}
+.wrapper {
+ justify-content: center;
+ border-radius: 0.5rem;
+ border: 2px solid #0d7fff;
+//  background-color: #f7f3ee;
+ display: grid;
+ grid-template-columns: repeat(10, 3vh);
+ grid-auto-rows: 3vh;
 }
 
-.App-link {
-  color: hsl(123deg, 33%, 29%);
+.wrapper > div {
+ border: 1px solid #0d7fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+.purple {
+  background-color: purple;
+}
+
+.cyan {
+  background-color: cyan;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
 }

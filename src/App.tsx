@@ -1,24 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from './logo.svg'
 import './App.scss'
 import { useActions, useValues } from 'kea'
 import { appLogic } from './appLogic'
+import { GameState } from './shared/tetris.interfaces'
 
 function App() {
-  const { speed } = useValues(appLogic)
-  const { goFaster } = useActions(appLogic)
+  const { blocks, score, gameState } = useValues(appLogic);
+  const { keyDown, startGame, pauseGame, resumeGame } = useActions(appLogic);
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      keyDown(event.key);
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Don't forget to clean up
+    return function cleanup() {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className={`App-logo App-logo--speed-${speed}`} alt="logo" onClick={goFaster} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://kea.js.org" target="_blank" rel="noopener noreferrer">
-          Learn Kea
-        </a>
+    <div onKeyDown={event => keyDown(event.key)}>
+      <header className="title">
+        Tetris
       </header>
+      <main>
+        <div className="wrapper">
+          {
+            blocks.map((color, index) => (<div key={index} className={color}></div>))
+          }
+        </div>
+        <div>Score: {score}</div>
+        <div>
+          {gameState === GameState.INACTIVE || gameState === GameState.LOST ? (<button onClick={startGame}>Start new game</button>) : ('')}
+          {gameState === GameState.PAUSED ? (<button onClick={resumeGame}>Resume game</button>) : ('')}
+          {gameState === GameState.ACTIVE ? (<button onClick={pauseGame}>Pause game</button>) : ('')}
+        </div>
+      </main>
     </div>
   )
 }

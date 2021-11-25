@@ -2170,11 +2170,6 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@wessberg/ts-clone-node@0.3.19":
-  version "0.3.19"
-  resolved "https://registry.yarnpkg.com/@wessberg/ts-clone-node/-/ts-clone-node-0.3.19.tgz#823ed1fa74e4daa310226332322bfca97e264fe3"
-  integrity sha512-BnJcU0ZwHxa5runiEkHzMZ6/ydxz+YYqBHOGQtf3eoxSZu2iWMPPaUfCum0O1/Ey5dqrrptUh+HmyMTzHPfdPA==
-
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -4160,11 +4155,6 @@ diff-sequences@^27.0.6:
   version "27.0.6"
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-27.0.6.tgz#3305cb2e55a033924054695cc66019fd7f8e5723"
   integrity sha512-ag6wfpBFyNXZ0p8pcuIDS//D8H062ZQJ3fzYxjpmeKjnz8W4pekL3AI8VohmyZmsWW2PWaHgjsmqR6L13101VQ==
-
-diff@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-5.0.0.tgz#7ed6ad76d859d030787ec35855f5b1daf31d852b"
-  integrity sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -6933,16 +6923,6 @@ kea-test-utils@^0.2.1:
   dependencies:
     kea-waitfor "^0.2.1"
 
-kea-typegen@^1.2.2:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/kea-typegen/-/kea-typegen-1.3.0.tgz#bb2cb334d4643ecea6c675ba17f7d241031802be"
-  integrity sha512-4LADs4rJ8Jh1QhR9ejhG2l2zLlB816k9RgKDHi8JLK53bqS/xc9YJdHUPlenKfq6tuhCsYCPaCVPoJ2Df44u3w==
-  dependencies:
-    "@wessberg/ts-clone-node" "0.3.19"
-    diff "^5.0.0"
-    prettier "^2.3.1"
-    yargs "^16.2.0"
-
 kea-waitfor@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/kea-waitfor/-/kea-waitfor-0.2.1.tgz#d786ff69bcd05939dfef0211faecdbce132e5a04"
@@ -8909,11 +8889,6 @@ prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
-
-prettier@^2.3.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
-  integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
 pretty-bytes@^5.3.0:
   version "5.6.0"
