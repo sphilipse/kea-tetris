@@ -1,9 +1,8 @@
-import { kea, useActions } from 'kea'
-import { removeAllListeners } from 'process';
-import { AppLogicType } from './appLogic.type'
-import { shapeMap } from './shared/shapes.map';
-import { BoardState, Color, GameState, Grid, GRID_HEIGHT, GRID_WIDTH, Shape, TetroState } from './shared/tetris.interfaces';
-import { generateNewTetro, getBlocks, getClockwiseRotation, getCounterClockwiseRotation, hasCollision, isNotNullish, transformTetro } from './shared/utils.functions';
+import { kea } from 'kea'
+import { AppLogicType } from './appLogic.interface'
+import { shapeMap } from '../shared/shapes.map';
+import { BoardLocation, BoardState, Color, GameState, Grid, GRID_HEIGHT, GRID_WIDTH, Shape, TetroState } from '../shared/tetris.interfaces';
+import { generateNewTetro, getBlocks, getClockwiseRotation, getCounterClockwiseRotation, hasCollision, isNotNullish, transformTetro } from '../shared/utils.functions';
 
 const initialGridState: Grid = Array(GRID_HEIGHT).fill(
   Array(GRID_WIDTH).fill(undefined)
@@ -194,20 +193,29 @@ export const appLogic = kea<AppLogicType>({
     }
   }),
   selectors: ({ selectors }) => ({
-    tetroColor: [
+    activeTetro: [
       () => [selectors.board],
-      (board: BoardState) => board.activeTetro?.color ?? Color.GREY
+      (board: BoardState) => board.activeTetro,
+    ],
+    tetroColor: [
+      () => [selectors.activeTetro],
+      (activeTetro: TetroState | undefined) => activeTetro?.color ?? Color.GREY
+    ],
+    tetroBlocks: [
+      () => [selectors.activeTetro],
+      (activeTetro: TetroState) => activeTetro?.shape ? shapeMap.get(activeTetro.shape)?.[activeTetro.rotation] ?? [] : []
+    ],
+    tetroBlocksLocation: [
+      () => [selectors.board, selectors.tetroBlocks],
+      (board: BoardState, tetroBlocks: BoardLocation[]) => tetroBlocks.map(({ x, y }) => {
+        const locationX = board.activeTetro?.location?.x ?? 0;
+        const locationY = board.activeTetro?.location?.y ?? 0;
+        return { x: x + locationX, y: y + locationY };
+      })
     ],
     blocks: [
-      () => [selectors.board],
-      (board: BoardState) => {
-        const tetroBlocks = board.activeTetro?.shape ? shapeMap.get(board.activeTetro.shape)?.[board.activeTetro.rotation] ?? [] : [];
-        const tetroBlocksLocation = tetroBlocks.map(({ x, y }) => {
-          const locationX = board.activeTetro?.location?.x ?? 0;
-          const locationY = board.activeTetro?.location?.y ?? 0;
-          return { x: x + locationX, y: y + locationY };
-        });
-        const tetroColor = board.activeTetro?.color ?? Color.GREY;
+      () => [selectors.board, selectors.tetroBlocksLocation, selectors.tetroColor],
+      (board: BoardState, tetroBlocksLocation: BoardLocation[], tetroColor: Color) => {
         return board.grid
           .map((lines, indexY) =>
             lines.map((block, indexX) => {

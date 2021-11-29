@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import logo from './logo.svg'
 import './App.scss'
 import { useActions, useValues } from 'kea'
-import { appLogic } from './appLogic'
+import { appLogic } from './logic/appLogic'
 import { GameState } from './shared/tetris.interfaces'
 
 function App() {

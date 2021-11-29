@@ -1,5 +1,4 @@
 import { resetContext } from 'kea'
-import { routerPlugin } from 'kea-router'
 import { loadersPlugin } from 'kea-loaders'
 import { testUtilsPlugin } from 'kea-test-utils'
 import { createMemoryHistory } from 'history'
@@ -17,6 +16,6 @@ export function initKea() {
   }
 
   resetContext({
-    plugins: [routerPlugin(routerOptions), loadersPlugin].concat(IS_TEST_MODE ? [testUtilsPlugin] : []),
+    plugins: [loadersPlugin].concat(IS_TEST_MODE ? [testUtilsPlugin] : []),
   })
 }
