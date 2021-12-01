@@ -175,12 +175,12 @@ export const appLogic = kea<AppLogicType>({
     setSpeed: (action) => { clearInterval(values.intervalId); const intervalId = window.setInterval(actions.tick, action.speed); actions.setIntervalId(intervalId); },
     tick: () => { actions.moveDown(); },
     moveDown: () => {
-      if (values.board.grid[0].some(value => value != undefined)) {
+      if (values.board.grid[0].some(value => value !== undefined)) {
         actions.loseGame();
       } else {
         const filteredGrid = values.board.grid
           .map((line, index) =>
-            line.every((block) => block != undefined) ? index : undefined
+            line.every((block) => block !== undefined) ? index : undefined
           )
           .filter(isNotNullish);
         if (filteredGrid.length > 0) {

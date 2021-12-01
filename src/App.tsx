@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
-import logo from './logo.svg'
+import { useEffect } from 'react'
 import './App.scss'
 import { useActions, useValues } from 'kea'
 import { appLogic } from './logic/appLogic'
-import { GameState } from './shared/tetris.interfaces'
 import { Controls } from './components/controls'
 import { Block } from './components/block'
+import { GameState } from './shared/tetris.interfaces';
 
 function App() {
-  const { blocks, score } = useValues(appLogic);
+  const { blocks, score, gameState } = useValues(appLogic);
   const { keyDown } = useActions(appLogic);
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -26,9 +25,10 @@ function App() {
   return (
     <div>
       <header className="title">
-        Tetris
+        <h1>Tetris</h1>
       </header>
       <main>
+        {(gameState === GameState.LOST ? <h1 className="lost">GAME OVER</h1> : null)}
         <div className="wrapper">
           {
             blocks.map((color, index) => (<Block key={index} color={color} />))
