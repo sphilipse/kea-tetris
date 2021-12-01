@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="mainWrapper">
       <header className="title">
         <h1>Tetris</h1>
       </header>

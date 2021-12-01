@@ -78,8 +78,8 @@ export const appLogic = kea<AppLogicType>({
           );
           return { ...state, grid: [...linesToAdd, ...cleanedGrid] };
         },
-        rotateClockwise: (state) => transformTetro(state, state.activeTetro?.rotation != null ? getClockwiseRotation(state.activeTetro.rotation) : undefined, undefined),
-        rotateCounterClockwise: (state) => transformTetro(state, state.activeTetro?.rotation != null ? getCounterClockwiseRotation(state.activeTetro.rotation) : undefined, undefined),
+        rotateClockwise: (state) => transformTetro(state, state.activeTetro?.rotation !== undefined ? getClockwiseRotation(state.activeTetro.rotation) : undefined, undefined),
+        rotateCounterClockwise: (state) => transformTetro(state, state.activeTetro?.rotation !== undefined ? getCounterClockwiseRotation(state.activeTetro.rotation) : undefined, undefined),
         moveLeft: (state) => transformTetro(state, state.activeTetro?.rotation, state.activeTetro?.location ? { ...state.activeTetro?.location, x: state.activeTetro.location.x - 1 } : undefined),
         moveRight: (state) => transformTetro(
           state,
