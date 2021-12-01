@@ -4,10 +4,12 @@ import './App.scss'
 import { useActions, useValues } from 'kea'
 import { appLogic } from './logic/appLogic'
 import { GameState } from './shared/tetris.interfaces'
+import { Controls } from './components/controls'
+import { Block } from './components/block'
 
 function App() {
-  const { blocks, score, gameState } = useValues(appLogic);
-  const { keyDown, startGame, pauseGame, resumeGame } = useActions(appLogic);
+  const { blocks, score } = useValues(appLogic);
+  const { keyDown } = useActions(appLogic);
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       keyDown(event.key);
@@ -22,22 +24,18 @@ function App() {
   }, []);
 
   return (
-    <div onKeyDown={event => keyDown(event.key)}>
+    <div>
       <header className="title">
         Tetris
       </header>
       <main>
         <div className="wrapper">
           {
-            blocks.map((color, index) => (<div key={index} className={color}></div>))
+            blocks.map((color, index) => (<Block key={index} color={color} />))
           }
         </div>
         <div>Score: {score}</div>
-        <div>
-          {gameState === GameState.INACTIVE || gameState === GameState.LOST ? (<button onClick={startGame}>Start new game</button>) : ('')}
-          {gameState === GameState.PAUSED ? (<button onClick={resumeGame}>Resume game</button>) : ('')}
-          {gameState === GameState.ACTIVE ? (<button onClick={pauseGame}>Pause game</button>) : ('')}
-        </div>
+        <Controls />
       </main>
     </div>
   )

@@ -59,11 +59,8 @@ export const appLogic = kea<AppLogicType>({
       GameState.INACTIVE,
       {
         startGame: () => GameState.ACTIVE,
-        pauseGame: (state) => {
-          if (state === GameState.ACTIVE) return GameState.PAUSED;
-          if (state === GameState.PAUSED) return GameState.ACTIVE;
-          return state;
-        },
+        pauseGame: () => GameState.PAUSED,
+        resumeGame: () => GameState.ACTIVE,
         stopGame: () => GameState.INACTIVE,
         loseGame: () => GameState.LOST,
       }
